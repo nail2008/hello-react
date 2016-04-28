@@ -15,7 +15,9 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
-      <Route path="login" component={Login} />
+      <Route path="part1" component={Home} />
+      <Route path="part2" component={Login} />
+      <Route path="part3" component={Login} />
     </Route>
   </Router>
   , document.getElementById('react-content')

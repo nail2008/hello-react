@@ -72,24 +72,19 @@ class Header extends Component{
                   首页
                 </Link>
               </Menu.Item>
-              <Menu.Item key="docs/practice">
-                <Link to="/docs/practice">
+              <Menu.Item key="part1">
+                <Link to="/part1">
                   实践
                 </Link>
               </Menu.Item>
-              <Menu.Item key="docs/pattern">
-                <Link to="/docs/pattern">
+              <Menu.Item key="part2">
+                <Link to="/part2">
                   模式
                 </Link>
               </Menu.Item>
-              <Menu.Item key="components">
-                <Link to="/components">
+              <Menu.Item key="part3">
+                <Link to="/part3">
                   组件
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="docs/spec">
-                <Link to="/docs/spec">
-                  语言
                 </Link>
               </Menu.Item>
             </Menu>

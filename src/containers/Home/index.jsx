@@ -19,7 +19,7 @@ class Home extends Component{
 
     return (
       <div>
-       This is a Component!
+       This is a Home Component!
       </div>
     );
   }

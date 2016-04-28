@@ -19,7 +19,7 @@ class Login extends Component{
 
     return (
       <div>
-       This is a Component!
+       This is a Login Component!
       </div>
     );
   }
