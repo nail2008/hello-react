@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "reactWebpackRedux",
+    "style": "less",
+    "postcss": false
+  }
+}

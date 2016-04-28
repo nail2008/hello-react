@@ -1,0 +1,69 @@
+@header-height: 80px;
+
+#header {
+  transition: opacity 0.5s;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  height: @header-height;
+  margin-bottom: 24px;
+  padding: 0 4%;
+  width: 100%;
+
+  &.home-nav-bottom {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom-color: #EBEDEE;
+    .search {
+      border-left-color: #EBEDEE;
+    }
+    a {
+      color: #666;
+    }
+  }
+}
+
+#logo {
+  float: left;
+  height: 60px;
+  margin: 20px 45px 20px 0;
+}
+
+#logo img {
+  height: 40px;
+  width: 40px;
+  margin-right: 8px;
+}
+
+#logo span {
+  color: #6EB4E0;
+  float: right;
+  font-size: 14px;
+  font-family: "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  height: 40px;
+  line-height: 40px;
+  text-transform: uppercase;
+}
+
+
+#nav {
+  border: 0;
+  float: right;
+  font-size: 14px;
+}
+
+#nav li {
+  height: @header-height;
+  line-height: @header-height;
+  width: 72px;
+  text-align: center;
+  border-bottom-width: 3px;
+
+  &.ant-menu-item-selected a {
+    color: #2db7f5;
+    font-weight: bold;
+  }
+}
+
+.ant-select-combobox .ant-select-search__field:focus {
+  box-shadow: none;
+}
+
