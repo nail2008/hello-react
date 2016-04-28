@@ -2,7 +2,7 @@
   "name": "cdp-ui-static-demo",
   "version": "0.0.1",
   "private": true,
-  "description": "cdp-ui 项目的静态演示",
+  "description": "cdp-ui 静态演示",
   "main": "",
   "scripts": {
     "clean": "rimraf dist/*",
