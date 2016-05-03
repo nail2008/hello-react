@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {buildCommon} from '../../../scripts/utils'
+import {buildCommon} from '../utils'
 
 import './index.less';
 
@@ -15,7 +15,7 @@ class Content extends Component{
   render(){
   	mds = buildCommon("../../../docs/practice")
 
-    
+
     return (
       <div className="main-container">
       	测试中
