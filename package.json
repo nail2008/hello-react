@@ -6,7 +6,7 @@
   "main": "",
   "scripts": {
     "clean": "rimraf dist/*",
-    "copy": "copyfiles -f ./src/index.html ./src/reset.css ./dist",
+    "copy": "copyfiles -f ./src/index.html ./src/reset.css ./src/favicon.ico ./dist",
     "dist": "npm run copy & webpack --env=dist",
     "lint": "eslint ./src",
     "posttest": "npm run lint",
@@ -68,6 +68,7 @@
   "dependencies": {
     "antd": "^0.12.16",
     "core-js": "^2.0.0",
+    "highlight.js": "^9.3.0",
     "normalize.css": "^4.0.0",
     "react": "0.14.x",
     "react-dom": "0.14.x",
