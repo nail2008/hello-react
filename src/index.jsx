@@ -19,9 +19,9 @@ ReactDOM.render(
       <IndexRoute component={Home} />
       <Route path="part1" component={Content} />
       <Route path="part2" component={Login} />
-      
+
     </Route>
-    <Route path="part3" component={FormDemo} />
+    <Route path="/part3" component={FormDemo} />
   </Router>
   , document.getElementById('react-content')
 );
