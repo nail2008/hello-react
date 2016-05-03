@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import Link from './Link';
+import Banner from './Banner';
+import Page1 from './Page1';
 import './index.less';
 
 import * as utils from '../utils';
@@ -10,7 +12,7 @@ class Home extends Component{
     this.componentDidUpdate();
   }
   componentDidUpdate() {
-    utils.setTitle('Ant Design - 一个 UI 设计语言');
+    utils.setTitle('欢迎访问中油龙慧公司网站');
   }
   // To store style which is only for Home and has conflicts with others.
   getStyle() {
@@ -67,11 +69,12 @@ class Home extends Component{
   }
 
   render(){
-
-
     return (
       <div className="main-wrapper">
-
+        <Link />
+        <Banner />
+        <Page1 />
+        <style dangerouslySetInnerHTML={{ __html: this.getStyle() }} />
       </div>
     );
   }
