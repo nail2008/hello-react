@@ -61,7 +61,7 @@ class Header extends Component{
               type="menu" />
             <Link to="/" id="logo">
               <img src="https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg" />
-              <span>Ant Design</span>
+              <span>ABC公司</span>
             </Link>
           </Col>
           <Col className={`nav ${this.state.menuVisible ? 'nav-show' : 'nav-hide'}`}
