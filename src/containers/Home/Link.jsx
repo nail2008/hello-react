@@ -11,20 +11,25 @@ import { Link as ScrollLink ,scrollScreen } from 'rc-scroll-anim';
 export default class Link extends React.Component {
   componentDidMount() {
     scrollScreen.init({
-      docHeight: 1000
+      docHeight: 4746,
+      duration: 1
     });
   }
 
 	/**
-   * Link的
-   * @returns {XML}
+   * Link的API:
+   * http://motion.ant.design/#/components/scroll-anim?scrollTo=Link+%E8%AF%B4%E6%98%8E&_k=n3uq4r
+   * Link实现的是右边的五个点的连接.下面的顺序并不是滚轮操作的顺序,滚轮的顺序由index.jsx中JSX排列的顺序决定
+   * 参数:
+   * location是必需的,这个值对应 Element Parallax OverPack 的 scrollName 值, 元素必需是唯一.
+   *
    */
   render() {
     return (
       <div id="list">
         <ScrollLink className="list-point" location="banner" />
-        <ScrollLink className="list-point" location="page1" />
-        <ScrollLink className="list-point" location="page2" />
+        <ScrollLink className="list-point" location="page1" duration={2000}/>
+        <ScrollLink className="list-point" location="page2" duration={10}/>
         <ScrollLink className="list-point" location="page3" />
         <ScrollLink className="list-point" location="page4" />
       </div>

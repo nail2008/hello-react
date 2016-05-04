@@ -4,7 +4,20 @@ import ScrollElement from 'rc-scroll-anim/lib/ScrollElement';
 import TweenOne from 'rc-tween-one';
 import GitHubButton from 'react-github-button';
 import 'react-github-button/assets/style.css';
-import { QueueAnim, Icon } from 'antd';
+import { Icon } from 'antd';
+import QueueAnim from 'rc-queue-anim';
+
+/*
+ * rc-scroll-anim 页面滚动动画
+ * http://motion.ant.design/#/components/scroll-anim
+ *
+ * rc-tween-one 单元素动画
+ * http://motion.ant.design/#/components/tween-one
+ *
+ * rc-queue-anim 进出场动画
+ * http://motion.ant.design/#/components/queue-anim
+ *
+ */
 
 export default class Banner extends React.Component {
   typeFunc(a) {
@@ -20,6 +33,7 @@ export default class Banner extends React.Component {
     return (
       <section id="banner">
         <ScrollElement scrollName="banner" className="page">
+          {/* 最简单的入场动画 使用type属性设置进入方向*/}
           <QueueAnim className="banner-text-wrapper" type={this.typeFunc} delay={300}>
             <h2 key="h2">ANT <p>DESIGN</p></h2>
             <p key="content">一个 UI 设计语言</p>
@@ -32,7 +46,11 @@ export default class Banner extends React.Component {
             <GitHubButton key="github-button" type="stargazers"
               namespace="ant-design" repo="ant-design" />
           </QueueAnim>
-          <TweenOne className="down" vars={[{ opacity: 1 }, { y: 10, duration: 800, yoyo: true, repeat: -1 }]}>
+
+          <TweenOne className="down"
+            /* 我是多行注释  */
+            //单元素动画 animation参数可以是对象,也可以是数组
+                    animation={{ y: 10, duration: 800, yoyo: true, repeat: -1 }}>
             <Icon type="down" />
           </TweenOne>
         </ScrollElement>
