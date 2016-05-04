@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form,Button,Table,notification,Icon} from 'antd'
+import {Form,Button,Table,notification,Icon,Spin} from 'antd'
 
 const dataSource = [];
 const data = [{
@@ -62,8 +62,8 @@ const columns = [{
     value: '部门合同',
   }],
   // 指定确定筛选的条件函数
-  // 这里是名字中第一个字是 value
-  onFilter: (value, record) => record.conName.indexOf(value) >= 0,
+  // 这里是合同名称包含 value 的
+  onFilter: (value, record) => record.conName.indexOf(value) >= 0,//record为列表记录的每一行数据
   sorter: (a, b) => a.conName.length - b.conName.length,
 }, {
   title: '合同类型',
@@ -88,7 +88,7 @@ const columns = [{
   render(text, record) {
     return (
       <span>
-        <a href="#">操作一{record.name}</a>
+        <a href="#">操作一</a>
         <span className="ant-divider"></span>
         <a href="#">操作二</a>
         <span className="ant-divider"></span>
@@ -103,6 +103,7 @@ const columns = [{
 const pagination = {
   total: dataSource.length,
   showSizeChanger: true,
+  //showQuickJumper: true,//跳至第几页
   onShowSizeChange(current, pageSize) {
     console.log('Current: ', current, '; PageSize: ', pageSize);
   },
@@ -143,10 +144,10 @@ const ListForm = React.createClass({
 		const { loading, selectedRowKeys } = this.state;
 	    const rowSelection = {
 	      getCheckboxProps(record) {
-		    return {
-		      disabled: record.conName === '部门合同_人事部'    // 配置无法勾选的列
-		    };
-		  },
+  		    return {
+  		      disabled: record.conName === '部门合同_人事部'    // 配置无法勾选的列
+  		    };
+  		  },
 	      selectedRowKeys,
 	      onChange: this.onSelectChange,
 	    };
@@ -158,11 +159,13 @@ const ListForm = React.createClass({
 				<Button type="primary" disabled={!hasSelected} onClick={this.start} loading={loading}>保存</Button>
 				<span style={{ marginLeft: 8 }}>{hasSelected ? `选择了 ${selectedRowKeys.length} 个对象` : ''}</span>
 				<br/><br/>
-				<Table rowSelection={rowSelection} 
-               dataSource={dataSource} 
-               columns={columns} 
-               pagination={pagination} 
-               expandedRowRender={record => <p>{record.description}</p>} />
+        <Spin spining={this.state.loading} size="large">
+  				<Table rowSelection={rowSelection} 
+                 dataSource={dataSource} 
+                 columns={columns} 
+                 pagination={pagination} 
+                 expandedRowRender={record => <p>{record.description}</p>} />
+        </Spin>
 			</Form>
 		)
 	}

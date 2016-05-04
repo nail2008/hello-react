@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Select, Col,Row,Checkbox,Radio,DatePicker,Cascader,Tree,Transfer,Button,TreeSelect,
-		Icon,Upload,Steps,Affix,Modal,Tooltip  } from 'antd';
+		Icon,Upload,Steps,Affix,Modal,Tooltip,Slider, InputNumber,QueueAnim,Breadcrumb  } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -11,7 +11,8 @@ const SHOW_PARENT = TreeSelect.SHOW_PARENT;
 const Step = Steps.Step;
 const confirm = Modal.confirm;
 
-const options = [{
+//级联选择选项
+const cascaderOptions = [{
   value: 'zhejiang',
   label: '浙江',
   children: [{
@@ -34,7 +35,7 @@ const options = [{
     }],
   }],
 }];
-
+//树选择选项
 const treeData = [{
   label: '节点一',
   value: '0-0',
@@ -43,6 +44,15 @@ const treeData = [{
     label: '子节点一',
     value: '0-0-0',
     key: '0-0-0',
+    children: [{
+	    label: '子节点1.1',
+	    value: '0-0-0-0',
+	    key: '0-0-0-0',
+	  }, {
+	    label: '子节点1.2',
+	    value: '0-0-0-1',
+	    key: '0-0-0-1',
+	}],
   }, {
     label: '子节点二',
     value: '0-0-1',
@@ -62,6 +72,7 @@ const treeData = [{
     key: '0-1-1',
   }],
 }];
+//步骤条数据
 const steps = [{
   status: 'finish',
   title: '已完成'
@@ -80,9 +91,15 @@ const steps = [{
 const CardForm = React.createClass({
 	render(){
 		return (
+			<div>
+			<Breadcrumb>
+				{this.props.breadCrumb.map(function(item,index){
+					return <Breadcrumb.Item>{item}</Breadcrumb.Item>
+				})}
+			</Breadcrumb>
 			<Form >
 				<Row><div>
-			   		<FormItem
+			   		<FormItem 
 			          label="步骤条："
 			          labelCol={{ span: 4 }}
 			          wrapperCol={{ span: 16 }}>
@@ -90,23 +107,34 @@ const CardForm = React.createClass({
 			        </FormItem>  
 			   	</div></Row>
 				<Row><div>
-			   		<FormItem
+			   		<FormItem 
 			          label="文件上传："
 			          labelCol={{ span: 4 }}
-			          wrapperCol={{ span: 16 }}>
+			          wrapperCol={{ span: 6 }}>
 			          	<div className="clearfix">
-				            <Upload 
-				            	action='/upload.do'
-  								listType= 'picture-card'>
-								<Icon type="plus" />
-								<div className="ant-upload-text">上传照片</div>
-							</Upload>
-							<a href="https://os.alipayobjects.com/rmsportal/NDbkJhpzmLxtPhB.png" target="_blank" className="upload-example">
-						    	<img src="https://os.alipayobjects.com/rmsportal/NDbkJhpzmLxtPhB.png" />
-						    	<span>示例</span>
-					 		</a>
+			          		<QueueAnim delay={1000} animConfig={[
+					            { opacity: [1, 0], translateY: [0, 50] },
+					            { opacity: [1, 0], translateY: [0, -50] }
+					          ]}>
+					            <Upload key="1"
+					            	action='/upload.do'
+	  								listType= 'picture-card'>
+									<Icon type="plus" />
+									<div className="ant-upload-text">上传照片</div>
+								</Upload>
+								<a key="2" href="https://os.alipayobjects.com/rmsportal/NDbkJhpzmLxtPhB.png" target="_blank" className="upload-example">
+							    	<img src="https://os.alipayobjects.com/rmsportal/NDbkJhpzmLxtPhB.png" />
+							    	<span>示例</span>
+						 		</a>
+					 		</QueueAnim >
 						</div>
-			        </FormItem>  
+			        </FormItem>
+			        <FormItem 
+				      label="滑动条："
+				      labelCol={{ span: 4 }}
+				      wrapperCol={{ span: 6 }}>
+				      <IntegerStep   min={0} max={20}  value={0} icon={['frown', 'smile']} />
+				    </FormItem>  
 			   	</div></Row>
 				<Row ><div>
 				    <FormItem
@@ -177,7 +205,7 @@ const CardForm = React.createClass({
 			          label="级联选择："
 			          labelCol={{ span: 4 }}
 			          wrapperCol={{ span: 6 }}>
-			            <Cascader options={options} style={{width:"250px"}}  />  
+			            <Cascader options={cascaderOptions} style={{width:"250px"}}  />  
 			        </FormItem>  
 			        <FormItem
 			          label="树选择："
@@ -196,27 +224,25 @@ const CardForm = React.createClass({
 			          label="穿梭框："
 			          labelCol={{ span: 4 }}
 			          wrapperCol={{ span: 16 }}>
-			            <div><MyTransfer /></div>
+			            <div><TransferDemo /></div>
 			        </FormItem>  
 			   	</div></Row>
 			   	<Row><div>
-			   	<FormItem wrapperCol={{ span: 20,offset: 10 }}  style={{marginTop: 24 }}>
-		          <MyButton/>
-		        </FormItem>
+				   	<FormItem wrapperCol={{ span: 20,offset: 10 }}  style={{marginTop: 24 }}>
+			          <ButtonDemo/>
+			        </FormItem>
 		        </div></Row>
-			   	
 			  </Form>
-			  
+			</div>  
 		)
 	}
 })
-// 树形控件
-// 进度条
-const MyTransfer = React.createClass({
+//穿梭框
+const TransferDemo = React.createClass({
   getInitialState() {
     return {
-      mockData: [],
-      targetKeys: [],
+      mockData: [],//存全部选项的内容
+      targetKeys: [],//存被选择的选择的key
     };
   },
   componentDidMount() {
@@ -271,8 +297,8 @@ const MyTransfer = React.createClass({
     );
   }
 });
-
-const MyButton = React.createClass({
+//提交按钮
+const ButtonDemo = React.createClass({
 	getInitialState() {
 		return {
 		  loading: false,
@@ -282,7 +308,6 @@ const MyButton = React.createClass({
 	},
 	enterLoading() {
 		let that = this;
-
 		confirm({
 		    title: '您是否确认提交这些内容内容',
 		    content: '一些解释',
@@ -291,7 +316,6 @@ const MyButton = React.createClass({
 		    },
 		    onCancel() {}
 		});
-		
 	},
 	enterIconLoading() {
 		this.setState({ iconLoading: true });
@@ -302,6 +326,48 @@ const MyButton = React.createClass({
 		)
 	}
 })
+//滑动条
+const IntegerStep = React.createClass({
+  getInitialState() {
+  	const max = this.props.max;
+    const min = this.props.min;
+    const mid = ((max - min) / 2).toFixed(5);
+    console.log(min,max,mid)
+    return {
+      preIconClass: this.props.value >= mid ? '' : 'anticon-highlight',
+      nextIconClass: this.props.value >= mid ? 'anticon-highlight' : '',
+      mid,
+      sliderValue: this.props.value
+    };
+  },
+  onChange(v) {
+  	this.setState({
+      preIconClass: v >= this.state.mid ? '' : 'anticon-highlight',
+      nextIconClass: v >= this.state.mid ? 'anticon-highlight' : '',
+      sliderValue: v
+    });
+  },
+  render() {
+    return (
+      <div className="row">
+        <div className="col-2">
+          <Icon className={this.state.preIconClass} type={this.props.icon[0]} />
+        </div> 
+        <div className="col-20"> 
+          <Slider  {...this.props}  onChange={this.onChange} value={this.state.sliderValue} />
+        </div>
+        <div className="col-2">
+          <Icon className={this.state.nextIconClass} type={this.props.icon[1]} />
+       	</div> 
+        <div >
+          <InputNumber  {...this.props}  style={{ marginLeft: '16px' }}
+            value={this.state.sliderValue} onChange={this.onChange} />
+        </div>
+      </div>
+    );
+  }
+});
+
 export default CardForm
 
 // <FormItem
