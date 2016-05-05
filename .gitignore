@@ -19,4 +19,4 @@ Thumbs.db
 node_modules
 *.log
 dist
-
+_site
