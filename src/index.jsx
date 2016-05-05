@@ -1,9 +1,8 @@
-//import 'antd/dist/antd.css';
-import './changetheme/index.less';
-import './common/lib';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+
+import './common/lib';
 
 import App from './containers/App';
 import Home from './containers/Home';
