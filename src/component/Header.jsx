@@ -2,7 +2,7 @@ import React from 'react';
 import {Input} from 'antd'
 
 const Header = () =>
-  <div id="myHeader">
+  <div id="formHeader">
   </div>;
 
 
