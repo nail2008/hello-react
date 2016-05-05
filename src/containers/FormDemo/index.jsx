@@ -2,9 +2,9 @@ import React, {Component, PropTypes} from 'react';
 import {Form,Row,Col} from 'antd'
 
 import './index.less'
-import Header from '../../component/Header';
-import Menu from '../../component/Menu'
-import Tab from '../../component/Tab'
+import Header from '../../components/Header';
+import Menu from '../../components/Menu'
+import Tab from '../../components/Tab'
 
 const FormDemo = React.createClass({
   getInitialState() {

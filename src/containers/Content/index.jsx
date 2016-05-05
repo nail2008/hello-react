@@ -18,7 +18,7 @@ function mdLangToHljsLang(lang) {
 
 class Content extends Component{
   render(){
-    const content = require('antd-md!../../../static/practice/cases.md');
+    const content = require('antd-md!../../../static/docs/practice/cases.md');
     console.log(content.description);
     const title = content.intro[1][2][1][1].split(':')[1];
 
@@ -35,7 +35,7 @@ class Content extends Component{
             if(/h[1-6]/i.test(elementType)){
               return React.createElement(elementType, {
                 key: index,
-                id: innerContent, 
+                id: innerContent,
               }, [
                 <span key="title" dangerouslySetInnerHTML={{ __html: innerContent }} />,
               ]);
