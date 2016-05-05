@@ -1,4 +1,5 @@
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
+import './changetheme/index.less';
 import './common/lib';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -19,7 +20,6 @@ ReactDOM.render(
       <IndexRoute component={Home} />
       <Route path="part1" component={Content} />
       <Route path="part2" component={Login} />
-
     </Route>
     <Route path="/part3" component={FormDemo} />
   </Router>
