@@ -1,4 +1,4 @@
-import './styles/tomorrow.less';
+import '../styles/index.less';
 import './styles/common.less';
 import './styles/markdown.less';
 import './styles/toc.less';
@@ -13,3 +13,5 @@ import './styles/mock-browser.less';
 import './styles/colors.less';
 import './styles/motion.less';
 import './styles/responsive.less';
+
+import 'es6-shim';
