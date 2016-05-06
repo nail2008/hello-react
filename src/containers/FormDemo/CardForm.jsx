@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Input, Select, Col,Row,Checkbox,Radio,DatePicker,Cascader,Tree,Transfer,Button,TreeSelect,
-		Icon,Upload,Steps,Affix,Modal,Tooltip,Slider, InputNumber,QueueAnim,Breadcrumb  } from 'antd';
+		Icon,Upload,Steps,Affix,Modal,Tooltip,Slider, InputNumber,QueueAnim,Breadcrumb,Badge,Collapse ,
+		Dropdown,message,Popover,Progress,Tag,Timeline  } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -10,6 +11,8 @@ const TreeNode = Tree.TreeNode;
 const SHOW_PARENT = TreeSelect.SHOW_PARENT;
 const Step = Steps.Step;
 const confirm = Modal.confirm;
+const Panel = Collapse.Panel;
+const ProgressCircle = Progress.Circle;
 
 //级联选择选项
 const cascaderOptions = [{
@@ -89,14 +92,50 @@ const steps = [{
 
 
 const CardForm = React.createClass({
+	handleClickA () {
+		let count = this.state.count - 1;
+	    if (count < 0) {
+	      count = 0;
+	    }
+	    this.setState({ count });
+	    message.success('示例图片已打开！',5);
+	},
+	concel(){
+		message.error("点击取消了");
+	},
+	getInitialState() {
+	    return {
+	      count: 1,
+	    };
+	},
 	render(){
+		const timeLine = (<Timeline>
+						  <Timeline.Item>开始 2015-09-01</Timeline.Item>
+						  <Timeline.Item>进行 2015-09-01</Timeline.Item>
+						  <Timeline.Item>结束 2015-09-01</Timeline.Item>
+						</Timeline>);
+		const tree = (
+			<Tree showLine  multiple checkable>
+	            <Tree.TreeNode title="中国石油天然气管道局" key="G100">
+	              <Tree.TreeNode title="管道局" key="0-0-0" disabled>
+	                <Tree.TreeNode title="局办公室" key="0-0-0-0" disableCheckbox />
+	                <Tree.TreeNode title="人事部" key="0-0-0-1" />
+	              </Tree.TreeNode>
+	              <Tree.TreeNode title="工程建设单位" key="0-0-1">
+	                <Tree.TreeNode title={<span style={{ color: '#08c' }}>龙慧公司</span>} key="0-0-1-0" />
+	              </Tree.TreeNode>
+	            </Tree.TreeNode>
+			</Tree>
+			);
 		return (
 			<div>
-			<Breadcrumb>
-				{this.props.breadCrumb.map(function(item,index){
-					return <Breadcrumb.Item>{item}</Breadcrumb.Item>
-				})}
-			</Breadcrumb>
+			<Affix>
+				<Breadcrumb>
+					{this.props.breadCrumb.map(function(item,index){
+						return <Breadcrumb.Item>{item}</Breadcrumb.Item>
+					})}
+				</Breadcrumb>
+			</Affix>
 			<Form >
 				<Row><div>
 			   		<FormItem 
@@ -122,10 +161,12 @@ const CardForm = React.createClass({
 									<Icon type="plus" />
 									<div className="ant-upload-text">上传照片</div>
 								</Upload>
-								<a key="2" href="https://os.alipayobjects.com/rmsportal/NDbkJhpzmLxtPhB.png" target="_blank" className="upload-example">
-							    	<img src="https://os.alipayobjects.com/rmsportal/NDbkJhpzmLxtPhB.png" />
-							    	<span>示例</span>
-						 		</a>
+								<Badge count={this.state.count} key="2">
+									<a key="3" onClick={this.handleClickA} href="https://os.alipayobjects.com/rmsportal/NDbkJhpzmLxtPhB.png" target="_blank" className="upload-example">
+								    	<img src="https://os.alipayobjects.com/rmsportal/NDbkJhpzmLxtPhB.png" />
+								    	<span>示例</span>
+							 		</a>
+						 		</Badge>
 					 		</QueueAnim >
 						</div>
 			        </FormItem>
@@ -133,7 +174,7 @@ const CardForm = React.createClass({
 				      label="滑动条："
 				      labelCol={{ span: 4 }}
 				      wrapperCol={{ span: 6 }}>
-				      <IntegerStep   min={0} max={20}  value={0} icon={['frown', 'smile']} />
+				      <IntegerStep   min={0} max={10}  value={0} icon={['frown', 'smile']} />
 				    </FormItem>  
 			   	</div></Row>
 				<Row ><div>
@@ -228,10 +269,52 @@ const CardForm = React.createClass({
 			        </FormItem>  
 			   	</div></Row>
 			   	<Row><div>
+			   		<FormItem 
+			          label="折叠面板："
+			          labelCol={{ span: 4 }}
+			          wrapperCol={{ span: 16 }}>
+			            <Collapse defaultActiveKey={['1']} >
+						    <Panel header="这是个折叠面板，里面隐藏了一些组件" key="1">
+						    	<Row>
+							       <Col span="6">
+								       <Dropdown overlay={<p>这里通常是菜单</p>}>
+									        <a className="ant-dropdown-link" href="#">
+										      下拉菜单 <Icon type="down" />
+										    </a>
+									   </Dropdown>
+								   </Col>
+								   <Col span="6">
+									   <Popover overlay={timeLine} title="时间轴">
+									   		<a className="ant-dropdown-link" href="#">
+										      气泡卡片 <Icon type="down" />
+										    </a>
+									   </Popover>
+									</Col>
+									<Col span="12">
+										<Tag closable color="blue">蓝色</Tag>
+										<Tag closable color="green">绿色</Tag>
+										<Tag closable color="yellow">黄色</Tag>
+										<Tag closable color="red">红色</Tag>
+									</Col>
+									<Col span="6">
+										<Popover overlay={tree} title="树形控件">
+									   		<a className="ant-dropdown-link" href="#">
+										      气泡卡片 <Icon type="down" />
+										    </a>
+									   </Popover>
+									</Col>
+							 	</Row> 
+						    </Panel>
+						</Collapse>
+			        </FormItem>  
+			   	</div></Row>
+			   	<Row><div>
 				   	<FormItem wrapperCol={{ span: 20,offset: 10 }}  style={{marginTop: 24 }}>
 			          <ButtonDemo/>
 			        </FormItem>
 		        </div></Row>
+		        
+ 
 			  </Form>
 			</div>  
 		)
@@ -362,6 +445,7 @@ const IntegerStep = React.createClass({
         <div >
           <InputNumber  {...this.props}  style={{ marginLeft: '16px' }}
             value={this.state.sliderValue} onChange={this.onChange} />
+          <ProgressCircle percent={this.state.sliderValue/this.props.max*100} width={80}  />
         </div>
       </div>
     );
@@ -370,20 +454,5 @@ const IntegerStep = React.createClass({
 
 export default CardForm
 
-// <FormItem
-//   label="树形控件："
-//   labelCol={{ span: 4 }}
-//   wrapperCol={{ span: 6 }} >  
-//     <Tree showLine  multiple checkable>
-//         <TreeNode title="parent 1" key="0-0">
-//           <TreeNode title="parent 1-0" key="0-0-0" disabled>
-//             <TreeNode title="leaf" key="0-0-0-0" disableCheckbox />
-//             <TreeNode title="leaf" key="0-0-0-1" />
-//           </TreeNode>
-//           <TreeNode title="parent 1-1" key="0-0-1">
-//             <TreeNode title={<span style={{ color: '#08c' }}>sss</span>} key="0-0-1-0" />
-//           </TreeNode>
-//         </TreeNode>
-//       </Tree>      
-// </FormItem>	
+
 

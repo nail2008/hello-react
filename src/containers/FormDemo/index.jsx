@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Form,Row,Col} from 'antd'
+import {Form,Row,Col,Alert} from 'antd'
 
 import './index.less'
 import Header from '../../components/Header';
@@ -22,7 +22,7 @@ const FormDemo = React.createClass({
   },
   render(){
   	let tabProps = {
-  		tabList:[{name:'卡片页面',value:'CardForm'},{name:'列表页面',value:'ListForm'}],
+  		tabList:[{name:'卡片页面',value:'CardForm'},{name:'列表页面',value:'ListForm'},{name:'个人日程',value:'CalendarForm'}],
   		defaultTab:'CardForm',
       breadCrumb:this.state.breadCrumb
   	};
@@ -80,6 +80,7 @@ const FormDemo = React.createClass({
   	  	<Header/>
   	  	<Row>
   	  		<Col span="5">
+            <Alert closable message="消息提示" type="info" description="点击菜单只会更新面包屑，无其他操作！"  />
   	  			<Menu {...menuProps}/>
   	  		</Col>
   	  		<Col span="18">
