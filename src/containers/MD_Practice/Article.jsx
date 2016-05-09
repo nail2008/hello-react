@@ -1,9 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import './index.less';
+import './../Content/index.less';
 import hljs from 'highlight.js';
-import {Button, Collapse} from 'antd';
-import BrowserDemo from '../../components/BrowserDemo';
 
 const propTypes = {
 
@@ -86,63 +83,32 @@ function parseChildren(object, index){
   );
 }
 
-class Content extends Component{
+export default class Article extends Component{
   render(){
-    const demo = require('antd-md?demo!../../../static/docs/button/demo/button-group.md');
-    const _antd = require('antd');
-    demo.preview = demo.preview(React, ReactDOM, _antd, BrowserDemo);
-    const { id, meta, intro, code, preview, style, src,
-      expand, pathname } = demo;
-    const introChildren = intro.map(parseChildren);
-    const highlightedCode = hljs.highlight('javascript', code).value;
+    const mdName = this.props.params.mdName;
+    const content = require('antd-md!../../../static/docs/md_practice/' + mdName + '.md');
+
     return (
       <div className="main-container">
       	<article className="markdown">
-          <section className="code-box" id={id}>
-            <section className="code-box-demo">
-              { meta.iframe === 'true' ?
-                <iframe src={src} /> :
-                preview
-              }
-              {
-                !!style ?
-                  <style dangerouslySetInnerHTML={{ __html: style }} /> :
-                  null
-              }
-            </section>
-            <section className="code-box-meta markdown">
-              <div className="code-box-title">
-                { meta.chinese || meta.english }
-              </div>
-              <Collapse activeKey='code'>
-                <Collapse.Panel key="code" header={introChildren}>
-                  <div className="highlight">
-                    <pre>
-                      <code className="javascript" dangerouslySetInnerHTML={{
-                        __html: highlightedCode,
-                      }} />
-                    </pre>
-                  </div>
-                </Collapse.Panel>
-              </Collapse>
-            </section>
-          </section>
-
-
-
+          <h1>
+            { content.meta.chinese || content.meta.english }
+          </h1>
+          {
+            !content.meta.subtitle ? null :
+              <span className="subtitle">{ content.meta.subtitle }</span>
+          }
+          {
+            content.description.map(parseChildren)
+          }
         </article>
       </div>
     );
   }
-
-
-
-
 }
 
-Content.propTypes = propTypes;
+Article.propTypes = propTypes;
 
-Content.contextTypes = contextTypes;
+Article.contextTypes = contextTypes;
 
-export default Content;
 

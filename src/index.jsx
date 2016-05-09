@@ -7,8 +7,10 @@ import './common/lib';
 import App from './containers/App';
 import Home from './containers/Home';
 import Login from './containers/Login';
-import Content from './containers/Content';
 import FormDemo from './containers/FormDemo'
+import MD_Practice from './containers/MD_Practice';
+import Demo from './containers/MD_Practice/Demo';
+import Article from './containers/MD_Practice/Article';
 
 window.react = React;
 window['react-dom'] = ReactDOM;
@@ -17,7 +19,10 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
-      <Route path="part1" component={Content} />
+      <Route path="/static/docs" component={MD_Practice}>
+        <Route path="/static/docs/md_practice/:mdName" component={Article}/>
+        <Route path="/static/docs/button" component={Demo}/>
+      </Route>
       <Route path="part2" component={Login} />
     </Route>
     <Route path="/part3" component={FormDemo} />

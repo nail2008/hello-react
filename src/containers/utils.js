@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import hljs from 'highlight.js';
 
+
+
 function isHeading(type) {
   return /h[1-6]/i.test(type);
 }
