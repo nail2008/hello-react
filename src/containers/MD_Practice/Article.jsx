@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import './../Content/index.less';
+import './index.less';
 import hljs from 'highlight.js';
 
 const propTypes = {
