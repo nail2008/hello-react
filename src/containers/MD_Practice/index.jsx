@@ -30,7 +30,10 @@ export default class MD_Practice extends React.Component{
     const key = fileNameToPath(item.fileName);
     const text = item.chinese;
     const disabled = item.disabled === 'true';
-    const url = item.fileName.replace(/(\/index)?\.md$/i, '');
+    let url = item.fileName.replace(/(\/index)?\.md$/i, '');
+
+    const reg=/\\/g;
+    url = url.replace(reg,"/");
 
     const child = !item.link ?
       <Link to={url} disabled={disabled}>
