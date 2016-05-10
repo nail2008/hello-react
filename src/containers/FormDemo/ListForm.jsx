@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form,Button,Table,notification,Icon,Spin} from 'antd'
+import {Form,Button,Table,notification,Icon,Spin,Popconfirm,message,Col,Tree} from 'antd'
 
 const dataSource = [];
 const data = [{
@@ -136,6 +136,12 @@ const ListForm = React.createClass({
     }, 1000);
     
   },
+  add(){
+    message.info('点击了确定');
+  },
+  cancel() {
+    message.error('点击了取消');
+  },
   onSelectChange(selectedRowKeys) {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
    	 this.setState({ selectedRowKeys });
@@ -154,8 +160,10 @@ const ListForm = React.createClass({
 	  const hasSelected = selectedRowKeys.length > 0;
     //useFixedHeader 表头固定
 		return (
-			<Form >
-				<Button type="primary">添加</Button>
+			<div >
+        <Popconfirm title="暂时没有添加功能？" onConfirm={this.add} onCancel={this.cancel}>
+				  <Button type="primary" >添加</Button>
+        </Popconfirm>
 				<Button type="primary" disabled={!hasSelected} onClick={this.start} loading={loading}>保存</Button>
 				<span style={{ marginLeft: 8 }}>{hasSelected ? `选择了 ${selectedRowKeys.length} 个对象` : ''}</span>
 				<br/><br/>
@@ -166,8 +174,11 @@ const ListForm = React.createClass({
                  pagination={pagination} 
                  expandedRowRender={record => <p>{record.description}</p>} />
         </Spin>
-			</Form>
+			</div>
 		)
 	}
 })
 export default ListForm
+
+ 
+   
