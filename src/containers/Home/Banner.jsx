@@ -35,16 +35,14 @@ export default class Banner extends React.Component {
         <ScrollElement scrollName="banner" className="page">
           {/* 最简单的入场动画 使用type属性设置进入方向*/}
           <QueueAnim className="banner-text-wrapper" type={this.typeFunc} delay={300}>
-            <h2 key="h2">ANT <p>DESIGN</p></h2>
-            <p key="content">一个 UI 设计语言</p>
+            <h2 key="h2">欢迎访问中油龙慧公司网站</h2>
+            <p key="content">专注储运业务二十载</p>
             <span className="line" key="line" />
             <div key="button" className="start-button clearfix">
               <Link to="/static/docs/spec/introduce">
-                <Icon type="smile-circle" />开始探索
+                开始访问
               </Link>
             </div>
-            <GitHubButton key="github-button" type="stargazers"
-              namespace="ant-design" repo="ant-design" />
           </QueueAnim>
 
           <TweenOne className="down"

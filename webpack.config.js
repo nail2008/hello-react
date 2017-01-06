@@ -16,6 +16,7 @@ if (args._.length > 0 && args._.indexOf('start') !== -1) {
   env = 'dev';
 }
 process.env.REACT_WEBPACK_ENV = env;
+console.log("env="+env);
 
 /**
  * Build the webpack configuration

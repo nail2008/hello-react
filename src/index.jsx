@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory, Link } from 'react-router';
 
 import './common/lib';
 
@@ -23,7 +23,7 @@ ReactDOM.render(
         <Route path="/static/docs/md_practice/:mdName" component={Article}/>
         <Route path="/static/docs/button" component={Demo}/>
       </Route>
-      <Route path="part2" component={Login} />
+      <Link to="part2" component={Login} />
     </Route>
     <Route path="/part3" component={FormDemo} />
   </Router>

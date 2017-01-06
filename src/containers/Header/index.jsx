@@ -59,8 +59,7 @@ class Header extends Component{
               onClick={this.handleMenuIconClick.bind(this)}
               type="menu" />
             <Link to="/" id="logo">
-              <img src="https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg" />
-              <span>ABC公司</span>
+              <h2>中油龙慧</h2>
             </Link>
           </Col>
           <Col className={`nav ${this.state.menuVisible ? 'nav-show' : 'nav-hide'}`}
@@ -76,15 +75,15 @@ class Header extends Component{
                   简介
                 </Link>
               </Menu.Item>
-              <Menu.Item key="part2">
-                <Link to="/part2">
-                  模式
-                </Link>
-              </Menu.Item>
               <Menu.Item key="part3">
                 <Link to="/part3">
-                  组件
+                  demo
                 </Link>
+              </Menu.Item>
+              <Menu.Item key="part2">
+                <a href="http://localhost:8001/#/docs/react/introduce">
+                  组件
+                </a>
               </Menu.Item>
             </Menu>
           </Col>

@@ -18,9 +18,9 @@ class Login extends Component{
 
 
     return (
-      <div>
+      <a>
        This is a Login Component!
-      </div>
+      </a>
     );
   }
 }
